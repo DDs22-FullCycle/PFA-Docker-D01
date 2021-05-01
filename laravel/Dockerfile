@@ -17,7 +17,6 @@ FROM php:7.4-fpm-alpine
 WORKDIR /var/www
 RUN rm -rf /var/www/html
 COPY --from=builder /var/www/laravel .
-COPY /app ./public
 RUN ln -s public html
 RUN chown -R www-data:www-data /var/www
 EXPOSE 9000
