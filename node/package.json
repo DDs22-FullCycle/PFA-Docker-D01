@@ -12,12 +12,13 @@
     "delay": "3"
   },
   "prisma": {
-    "schema": "app/prisma/schema.prisma"
+    "schema": "/app/prisma/schema.prisma"
   },
   "dependencies": {
+    "npm": "^6.14.8",
     "express": "^4.16.1",
-    "prisma": "2.16.0",
-    "nodemon": "2.0.7",
-    "@prisma/client": "2.11.0"
+    "prisma": "^2.16.0",
+    "nodemon": "^2.0.7",
+    "@prisma/client": "^2.11.0"
   }
 }
