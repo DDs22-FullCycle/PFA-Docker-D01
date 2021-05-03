@@ -11,7 +11,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model cadastro {
-  CadastroId   Int    @id
-  CadastroName String
+model cursos {
+  cursoId   Int    @id
+  cursoName String
 }
