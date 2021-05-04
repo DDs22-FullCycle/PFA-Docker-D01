@@ -4,14 +4,15 @@ const app = express()
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+
 app.get('/', (req, res) => {
-    
+
     main().then((result) => {
 
       var retorno = `<h2> Douglas dos Santos </h2>
                      <h1> Lista de Cursos FullCycle: </h1>`
           for (const iterator of result) {
-            retorno += "<h3><li>"+ iterator + "</li></h3>"   
+            retorno += "<h3><li>"+ iterator + "</li> </h3>"   
           }
 
       return res.send(retorno)

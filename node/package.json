@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "Douglas dos Santos <douglasdossantos22@gmail.com>",
-  "main": "index.js",
+  "main": "./app/index.js",
   "scripts": {
-    "start": "npm run prisma-db && nodemon app/index.js",
-    "prisma-db": "npx prisma init && npx prisma generate && npx prisma migrate dev && npx prisma modulos seed --preview-feature",
+    "start": "npm run prisma-db && nodemon ./app/index.js",
+    "prisma-db": "npx prisma db push --preview-feature && npx prisma generate && npx prisma db seed --preview-feature ",
     "dev": "npm start --watch"
   },
   "nodemonConfig": {
     "delay": "3"
   },
   "prisma": {
-    "schema": "/app/prisma/schema.prisma"
+    "schema": "./app/prisma/schema.prisma"
   },
   "dependencies": {
     "npm": "^6.14.8",

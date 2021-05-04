@@ -1,9 +1,12 @@
-const meuscursos = [
-    {cursoId: 1, cursoName: "Docker1"},
-    {cursoId: 2, cursoName: "Docker2"},
-    {cursoId: 3, cursoName: "Docker3"},
-    {cursoId: 4, cursoName: "Docker4"},
-    {cursoId: 5, cursoName: "Docker5"}
-];
 
-module.exports.meuscursos = meuscursos;
+const cursos = [
+    {cursoId: 1, cursoName: "Docker"},
+    {cursoId: 2, cursoName: "Kubernetes"},
+    {cursoId: 3, cursoName: "Integração Contínua"},
+    {cursoId: 4, cursoName: "Git e GitHub"},
+    {cursoId: 5, cursoName: "Service Mesh com Istio"},
+    {cursoId: 6, cursoName: "Comunicação"},
+    {cursoId: 7, cursoName: "DDD e Arquitetura Hexagonal"}
+]
+
+module.exports.cursos = cursos;
