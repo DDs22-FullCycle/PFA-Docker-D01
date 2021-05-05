@@ -36,48 +36,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var meuscursos_1 = require("./meuscursos");
+//import { express } from;
+var express_1 = require("@types/express");
 var client_1 = require("@prisma/client");
+var app = express_1.express();
+var prisma = new client_1.PrismaClient();
+app.get('/', function (req, res) {
+    main().then(function (result) {
+        var retorno = "<h2> Douglas dos Santos </h2>\n                     <h1> Lista de Cursos FullCycle: </h1>";
+        for (var _i = 0, result_1 = result; _i < result_1.length; _i++) {
+            var iterator = result_1[_i];
+            retorno += "<h3><li>" + iterator + "</li> </h3>";
+        }
+        return res.send(retorno);
+    }).catch(function (err) {
+    });
+});
+app.listen(3000, function () {
+    console.log("Rodando na porta : " + app);
+});
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var _i, cursos_1, curso, teste;
+        var cursos, lista, key, element;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log('teste1');
-                    console.log(meuscursos_1.cursos);
-                    _i = 0, cursos_1 = meuscursos_1.cursos;
-                    _a.label = 1;
+                case 0: return [4 /*yield*/, prisma.cursos.findMany()];
                 case 1:
-                    if (!(_i < cursos_1.length)) return [3 /*break*/, 4];
-                    curso = cursos_1[_i];
-                    return [4 /*yield*/, client_1.prisma.cursos.upsert({
-                            data: curso
-                        })
-                        //console.log(teste)
-                    ];
-                case 2:
-                    teste = _a.sent();
-                    _a.label = 3;
-                case 3:
-                    _i++;
-                    return [3 /*break*/, 1];
-                case 4: 
-                //console.log('teste2')
-                return [2 /*return*/, null];
+                    cursos = _a.sent();
+                    lista = [];
+                    for (key in cursos) {
+                        if (Object.hasOwnProperty.call(cursos, key)) {
+                            element = cursos[key].cursoName;
+                            lista.push(element);
+                        }
+                    }
+                    return [2 /*return*/, lista];
             }
         });
     });
 }
 main()
     .catch(function (e) {
-    console.error(e);
-    process.exit(1);
+    throw e;
 })
     .finally(function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, client_1.prisma.$disconnect()];
+            case 0: return [4 /*yield*/, prisma.$disconnect()];
             case 1:
                 _a.sent();
                 return [2 /*return*/];

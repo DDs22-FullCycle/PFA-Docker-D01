@@ -12,6 +12,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN npm install
+RUN npm install prisma
+RUN npm install @prisma/client
 EXPOSE 3000
 
 COPY /app /app

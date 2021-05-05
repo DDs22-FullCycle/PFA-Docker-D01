@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "Douglas dos Santos <douglasdossantos22@gmail.com>",
-  "main": "./app/index.js",
+  "main": "./app/index.ts",
   "scripts": {
-    "start": "npm run prisma-db && nodemon ./app/index.js",
+    "start": "npx tsc && npm run prisma-db && nodemon ./app/index.ts",
     "prisma-db": "npx prisma db push --preview-feature && npx prisma generate && npx prisma db seed --preview-feature ",
     "dev": "npm start --watch"
   },
@@ -15,11 +15,22 @@
   "prisma": {
     "schema": "./app/prisma/schema.prisma"
   },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
   "dependencies": {
+    "express": "4.17.1",
     "npm": "^6.14.8",
-    "express": "^4.16.1",
     "prisma": "^2.16.0",
     "nodemon": "^2.0.7",
-    "@prisma/client": "^2.11.0"
-  }
+    "@types/express": "4.11.1",
+    "@prisma/client": "^2.11.0",
+    "@types/node": "12.12.2",
+    "node-ts": "5.1.1",
+    "ts-node-dev": "1.1.6",
+    "typescript": "3.4.3",
+    "ts-lint": "4.5.1"
+    }
 }
