@@ -12,11 +12,13 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN npm install
+RUN npm install nodemon -g
 RUN npm install prisma
 RUN npm install @prisma/client
+
 EXPOSE 3000
 
-COPY /app /app
+#COPY /app /app
 
 #dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
 ENTRYPOINT [ "dockerize", "-wait", "tcp://mysql-container:3306", "-timeout", "20s" ]

@@ -4,7 +4,7 @@ echo "Aguarde iniciando o servidor..."
 
 #docker run --rm --name=php-container --network pfa -p 9000:9000 -v $(pwd)/laravel/src:/var/www -dit dds22/laravel
  
-docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node/app:/usr/src/app" -dit dds22/node 
+docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node/app:/usr/src" -dit dds22/node 
 
 docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/nginx 
 
