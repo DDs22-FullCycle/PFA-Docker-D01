@@ -11,10 +11,9 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-RUN npm install
-RUN npm install nodemon -g
-RUN npm install prisma
-RUN npm install @prisma/client
+RUN npm install -g npm@7.12.0 --save
+# RUN npm install prisma
+# RUN npm install @prisma/client
 
 EXPOSE 3000
 
