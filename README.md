@@ -32,7 +32,7 @@ docker network create pfa
 ```
 #### Rode o container com a imagem mysql
 ```bash
-docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/public:mysql-pfa01 dds22/mysql 
+docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/public:mysql-pfa01 
 ```
 #### Rode o container com a imagem do node.js
 ```bash
