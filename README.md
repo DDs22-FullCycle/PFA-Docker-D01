@@ -44,6 +44,6 @@ docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/pub
 ```
 #### Rode a url no navegador
 ```
-http://localhost:8000
+http://localhost:8080
 ```
 
