@@ -1,14 +1,42 @@
 #!/usr/bin/env bash
 
-echo "Aguarde iniciando o servidor..."
+case "${1}" in
 
-#docker run --rm --name=php-container --network pfa -p 9000:9000 -v $(pwd)/laravel/src:/var/www -dit dds22/laravel
- 
-docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node:/usr/src" -dit dds22/node 
+    prod)
+        echo "Aguarde iniciando o servidor PRODUÇÃO..."
+        docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/public:mysql-pfa01 
+        docker run --rm --name=node-container --network pfa -p 3000:3000 -dit dds22/public:node-pfa01 
+        docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/public:nginx-pfa01
+        docker ps 
+    ;;
 
-docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/nginx 
+    mysq)
+        echo "Aguarde iniciando o servidor MYSQL DEV..."
+        docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/public:mysql-pfa01 
+    ;;
+    
+    node)
+        echo "Aguarde iniciando o servidor NODE DEV..."
+        if [[ "${2}" == "bash" ]]; then
+            docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node/app:/usr/src" -it dds22/public:node-pfa01 bash
+        else
+            docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node/app:/usr/src" -dit dds22/public:node-pfa01 
+        fi
+    ;;
 
-#docker run --rm --name=mysql-container --network pfa -p 3306:3306 -v $(pwd)/db/mysql:/var/lib/mysql -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/mysql 
-docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/mysql 
+    nginx)
+        echo "Aguarde iniciando o servidor NGINX DEV..."
+        docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/public:nginx-pfa01 
+    ;;
 
-docker ps
+    dev|*)
+        echo "Aguarde iniciando o servidor DEV..."
+        docker run --rm --name=mysql-container --network pfa -p 3306:3306 -e MYSQL_DATABASE=modulos -e MYSQL_ROOT_PASSWORD=root -dit dds22/public:mysql-pfa01 
+        docker run --rm --name=node-container --network pfa -p 3000:3000 -v "$(pwd)/node/app:/usr/src" -dit dds22/public:node-pfa01 
+        docker run --rm --name=nginx-container --network pfa -p 8080:8080 -dit dds22/public:nginx-pfa01 
+        docker ps
+    ;;
+    
+    
+
+esac

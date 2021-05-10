@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import express from "express";
+import { PrismaClient } from '@prisma/client'
+import express from "express"
 
-const app = express();
-const prisma = new PrismaClient();
+const app = express()
+const prisma = new PrismaClient()
 
 app.get('/', (req, res) => {
 
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, ()=> {
-    console.log("Rodando na porta : "+ app)
+    console.log("Rodando na porta : 3000")
 })
 
 async function main() {
@@ -47,3 +47,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect()
   })
+  
+  export default prisma
